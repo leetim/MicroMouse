@@ -4,15 +4,10 @@
 */
 //#1 мотор
 #include "Cl_Motor.h"
-Cl_Motor Motor; // создать мотор
-const byte IN1_pin = 5; // определяем пины управления двигателями правый
-const byte IN2_pin = 7; // правый
-const byte IN3_pin = 5; // левый
-const byte IN4_pin = 7; // левый
-const byte EN2_pin = 6; // шим правого двигателя
-const byte EN1_pin = 6; // шим левого двигателя
-
-
+const byte Motor5_pin = 5;
+const byte Motor6_pin = 6;
+const byte Motor7_pin = 7;
+Cl_Motor Motor(Motor5_pin, Motor6_pin, Motor7_pin); // создать мотор
 
 //#2 датчики
 #include "Cl_IK.h"
@@ -22,8 +17,9 @@ const byte IK_C_pin = 2; // пин центрального ик-датчика
 const byte IK_R_pin = 1; // пин правого датчика
 
 void setup() {
+//  Serial.begin(9600);
   //#1 мотор
-  Motor.setup(IN1_pin, IN2_pin, EN1_pin, IN3_pin, IN4_pin, EN2_pin);
+  Motor.setup();
   //#2 датчики
   IK_L.setup(IK_L_pin);
   IK_C.setup(IK_C_pin);
@@ -37,7 +33,9 @@ void loop() {
   IK_L.loop();
   IK_C.loop();
   IK_R.loop();
-  if (! IK_L.IK || ! IK_C.IK )  Motor.Back_Right();
-  else if (! IK_R.IK) Motor. Back_Left();
-  else Motor.FORWARD();
+
+  if (!IK_C.IK) Motor.goBack();
+  if (!IK_R.IK) Motor.turnLeft();
+  if (!IK_L.IK) Motor.turnRight();
+  if (IK_C.IK && IK_R.IK && IK_L.IK) Motor.stopMotor();
 }

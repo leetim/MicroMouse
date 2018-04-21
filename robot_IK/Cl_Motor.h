@@ -3,25 +3,23 @@
 #define Cl_Motor_h
 
 #include "Arduino.h"
+enum MotorDirection{MD_NONE, MD_STOP, MD_FORWARD, MD_LEFT, MD_RIGHT, MD_BACK};
 
 class Cl_Motor {
   public:
     Cl_Motor(); // конструктор
-    void setup(byte _IN1_pin, byte _IN2_pin, byte _EN1_pin, byte _IN3_pin, byte _IN4_pin, byte _EN2_pin); // функцию засунуть в setup() программы
+    Cl_Motor(byte p5, byte p6, byte p7): Motor5_pin(p5), Motor6_pin(p6), Motor7_pin(p7){} // конструктор
+    void setup(); // функцию засунуть в setup() программы
     void loop(); // функцию засунуть в loop() программы
-    void FORWARD(); // запустить мотор вперед
-    void Back_Left(); // запустить мотор назад влево
-    void Back_Right(); // запустить мотор назад вправо
-    void STOP();// остановить мотор
+    void goForward(); 
+    void turnLeft(); // запустить мотор назад влево
+    void turnRight(); // запустить мотор назад вправо// запустить мотор вперед
+    void goBack(); // запустить мотор назад вправо// запустить мотор вперед
+    void stopMotor();// остановить мотор
   private:
-    byte IN1_pin = 5; // правый вперед
-    byte IN2_pin = 7; // правый назад
-    byte IN3_pin = 5; // левый  вперед
-    byte IN4_pin = 7; // левый назад
-    byte EN1_pin = 6; // шим правого двигателя
-    byte EN2_pin = 6; // шим левого двигателя
-    byte Motor;// 1 мотор вращается вперед/2 мотор вращается назад влево/3 мотор вращается назад вправо / 0 нет
-    byte Speed = 95; // скорость движения вперед
-    byte d_S = 5;  // поправка для компенсации правого двигателя
+    byte Motor5_pin;
+    byte Motor6_pin;
+    byte Motor7_pin;
+    MotorDirection Motor;
 };
 #endif // Cl_Motor.h
