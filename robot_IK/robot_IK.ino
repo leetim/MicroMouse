@@ -4,6 +4,7 @@
 */
 //#1 мотор
 #include "Cl_Motor.h"
+#include "graph.h"
 const byte Motor5_pin = 5;
 const byte Motor6_pin = 6;
 const byte Motor7_pin = 7;
@@ -17,6 +18,8 @@ const byte IK_C_pin = 2; // пин центрального ик-датчика
 const byte IK_R_pin = 1; // пин правого датчика
 
 void setup() {
+//  asetup();
+//  return;
 //  Serial.begin(9600);
   //#1 мотор
   Motor.setup();
@@ -26,7 +29,38 @@ void setup() {
   IK_R.setup(IK_R_pin);
 }
 
+byte mem1[256];
+byte temp[256];
+
+int n = 64;
+
+bool check(){
+  for (int i = 0; i < n; i++){
+    if (mem1[i] != temp[i]) return true;
+  }
+  return false;
+}
+
 void loop() {
+//  aloop();
+//  for (int i = 0; i < n; i++){
+//    temp[i] = DriverRead(i);
+//  }
+//  if (check()){
+//    Serial.println("##########################");
+//    for (int i = 0; i < n; i++){
+//      mem1[i] = temp[i];
+//      Serial.print(temp[i]);
+//      Serial.print(" ");
+//    }
+//    Serial.println("#");
+//    Serial.println("##########################");
+//  }
+//  if (x != 0 || y != 0){
+//    Serial.println(DriverRead(0x02));
+//    Serial.println(DriverRead(0x03));
+//  }
+//  return;
   //#1 мотор
   Motor.loop();
   //#2 датчики
