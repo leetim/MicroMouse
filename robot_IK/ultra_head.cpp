@@ -1,6 +1,6 @@
 #include "ultra_head.h"
 
-#define SOUND_SPEAD 58
+#define SOUND_SPEED 58
 
 bool Ultrasonic::ready(){
   return true;
@@ -12,9 +12,9 @@ void Ultrasonic::toggle_direction(){
 }
 
 float Ultrasonic::get_back_distance(){
-  return ultra_back.distanceRead(SOUND_SPEAD);
+  return ultra_back.distanceRead(SOUND_SPEED);
 }
 
 float Ultrasonic::get_front_distance(){
-  return ultra_front.distanceRead(SOUND_SPEAD);
+  return ultra_front.distanceRead(SOUND_SPEED);
 }
