@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Arduino.h"
 #include <Ultrasonic.h>
 #include <Servo.h>
 
@@ -19,3 +21,12 @@ private:
   uint8_t cur_direction;
 };
 
+class Cl_IK {
+  public:
+    Cl_IK();
+    void setup(byte _pin);
+    void loop();
+    bool IK;// 1 откл / 0 вкл
+  private:
+    byte IK_pin ;
+};

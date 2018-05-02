@@ -1,7 +1,7 @@
 // Cl_Motor.cpp
 
 #include "Arduino.h"
-#include "Cl_Motor.h"
+#include "motor.h"
 
 Cl_Motor::Cl_Motor() { // конструктор
   pinMode(Motor5_pin, OUTPUT);

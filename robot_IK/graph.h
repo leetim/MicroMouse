@@ -1,6 +1,6 @@
 #pragma once
-#include "CL_Motor.h"
-#include "CL_IK.h"
+#include "motor.h"
+#include "sensors.h"
 #include <QList.h>
 
 #define WALL_NOTH (byte)0b000100
@@ -8,7 +8,7 @@
 #define WALL_SOUTH (byte)0b010000
 #define WALL_WEST (byte)0b100000
 #define RESEARCH_FLAG (byte)0b000010
-#define IN_PROCESS_FLAG (byte)0b000001
+#define IN_PROGRESS_FLAG (byte)0b000001
 
 enum Direction{D_NOTH, D_EAST, D_SOUTH, D_WEST};
 enum Action{A_NONE, A_GO_NOTH, A_GO_EAST, A_GO_SOUTH, A_GO_WEST};

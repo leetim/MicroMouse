@@ -1,9 +1,8 @@
   /*robot_IK.ino
 */
-#include "Cl_Motor.h"
+#include "motor.h"
 //#include "graph.h"
-#include "ultra_head.h"
-#include "Cl_IK.h"
+#include "sensors.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 const byte Motor_left_pinA = 14;

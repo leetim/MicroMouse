@@ -34,7 +34,21 @@ void Memory::next_action(){
   if (cur_action != A_NONE){
     return;
   }
-  //...
+  byte cur_vertex = get_vert(cur_position);
+  Point next_point;
+  Point edges[] = {
+    Point(cur_position.x, cur_position.y + 1),
+    Point(cur_position.x + 1, cur_position.y),
+    Point(cur_position.x, cur_position.y - 1),
+    Point(cur_position.x - 1, cur_position.y),
+  };
+  for (int i = 0; i < 4; i++){
+    byte v = get_vert(edges[i]);
+    if (!(v & (wall_flags[i] | IN_PROGRESS_FLAG))){
+      stack.push_back(edges[i]);
+      set_vert(edges[i], v | IN_PROGRESS_FLAG);
+    }  
+  }
 }
 
 void Memory::research_point(){
@@ -49,7 +63,7 @@ void Memory::research_point(){
   byte backSide = cycleShift(frontSide, 2);
   byte leftSide = cycleShift(rightSide, 2);
 
-  if (central.IK){
+  if (centralIK.IK){
     set_vert(cur_position, cur_vertex |= (frontSide | RESEARCH_FLAG));
   }
   
@@ -60,7 +74,6 @@ void Memory::research_point(){
     if (leftIK.IK){
       set_vert(next_point(), next_vertex |= leftSide);  
     }
-    set_vert(next_point(), IN_PROGRESS_FLAG)
   }
 }
 

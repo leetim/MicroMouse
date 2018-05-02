@@ -1,6 +1,4 @@
-// Cl_Motor.h
-#ifndef Cl_Motor_h
-#define Cl_Motor_h
+#pragma once
 
 #include "Arduino.h"
 enum MotorDirection{MD_NONE, MD_STOP, MD_FORWARD, MD_LEFT, MD_RIGHT, MD_BACK};
@@ -35,4 +33,3 @@ public:
   int count_left;
   int count_right;
 };
-#endif // Cl_Motor.h
